@@ -1,0 +1,6 @@
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #Sidenav mode="side" [opened]="mobileQueryMax.matches?false:true">Sidenav content</mat-sidenav>
+    <mat-sidenav-content>
+        <app-navbar (navToggle)="Sidenav.toggle()"></app-navbar>
+    </mat-sidenav-content>
+</mat-sidenav-container>
