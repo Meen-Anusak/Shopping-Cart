@@ -1,33 +1,37 @@
 <mat-toolbar>
-    <button mat-icon-button (click)="onSideNavToggle()"><mat-icon>menu</mat-icon></button>
-    <span>My-Shop</span>
-    <span class="d-flex flex-fill"></span>
+    <button mat-button (click)="onSideNavToggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+    <span *ngIf="!mobileQueryMax">My-Shop</span>
+    <span class="flex-fill"></span>
     <div class="d-flex align-items-center">
-        <button mat-icon-button aria-label="Example icon-button with a heart icon">
-        <mat-icon>search</mat-icon>
-      </button>
+        <button mat-button aria-label="Example icon-button with a heart icon">
+      <mat-icon>search</mat-icon>
+    </button>
         <div class="vl"></div>
-        <button mat-icon-button aria-label="Example icon-button with a heart icon">
-        <mat-icon [matBadge]="mailNoti" matBadgeColor="primary">mail_outline</mat-icon>
-      </button>
+        <button mat-button aria-label="Example icon-button with a heart icon">
+      <mat-icon [matBadge]="mailNoti" matBadgeColor="primary">mail_outline</mat-icon>
+    </button>
         <div class="vl"></div>
-        <button mat-icon-button aria-label="Example icon-button with a heart icon">
-        <mat-icon [matBadge]="Noti" matBadgeColor="warn">notifications_none</mat-icon>
-      </button>
+        <button mat-button aria-label="Example icon-button with a heart icon">
+      <mat-icon [matBadge]="Noti" matBadgeColor="warn">notifications_none</mat-icon>
+    </button>
         <div class="vl"></div>
         <button mat-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-        <img class="avatar rounded-circle" src="http://www.samhongkai.com/wp-content/uploads/2019/07/%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%98%E0%B9%8C%E0%B9%81%E0%B8%A1%E0%B8%A7%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B8%A3%E0%B8%B1%E0%B8%81-%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B9%80%E0%B8%A5%E0%B8%B5%E0%B9%89%E0%B8%A2%E0%B8%87.jpg" alt="">
-        <span class="ml-2">admin Cat</span>
-      </button>
+      <img class="avatar rounded-circle"
+        src="http://www.samhongkai.com/wp-content/uploads/2019/07/%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%98%E0%B9%8C%E0%B9%81%E0%B8%A1%E0%B8%A7%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B8%A3%E0%B8%B1%E0%B8%81-%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B9%80%E0%B8%A5%E0%B8%B5%E0%B9%89%E0%B8%A2%E0%B8%87.jpg"
+        alt="">
+      <span class="ml-2">admin Cat</span>
+    </button>
         <mat-menu #menu="matMenu">
             <button mat-menu-item>
-          <mat-icon>perm_identity</mat-icon>
-          <span>Profile</span>
-        </button>
+        <mat-icon>perm_identity</mat-icon>
+        <span>Profile</span>
+      </button>
             <button mat-menu-item>
-          <mat-icon>exit_to_app</mat-icon>
-          <span>Logout</span>
-        </button>
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Logout</span>
+      </button>
         </mat-menu>
     </div>
 </mat-toolbar>

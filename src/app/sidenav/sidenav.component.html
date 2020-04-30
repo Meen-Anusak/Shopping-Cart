@@ -1,6 +1,11 @@
-<mat-sidenav-container class="example-container">
-    <mat-sidenav #Sidenav mode="side" [opened]="mobileQueryMax.matches?false:true">Sidenav content</mat-sidenav>
+<mat-sidenav-container fullscreen>
+    <mat-sidenav #Sidenav [mode]="mobileQueryMax.matches? 'over':'side'" [opened]="mobileQueryMax.matches?false:true">
+        <app-menu-sidenav></app-menu-sidenav>
+    </mat-sidenav>
     <mat-sidenav-content>
-        <app-navbar (navToggle)="Sidenav.toggle()"></app-navbar>
+        <app-navbar [mobile_side]="mobileQueryMax.matches" (navToggle)="Sidenav.toggle()"></app-navbar>
+        <div class="content-wrapper">
+            <router-outlet></router-outlet>
+        </div>
     </mat-sidenav-content>
 </mat-sidenav-container>
