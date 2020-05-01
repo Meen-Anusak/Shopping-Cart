@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Product } from 'src/app/models/products.model';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-stock-home',
@@ -14,10 +16,15 @@ export class StockHomeComponent implements OnInit {
   dataSource = new MatTableDataSource<Product>();
   textSearch : string
 
+  @ViewChild(MatSort,{static:true}) sort:MatSort
+  @ViewChild(MatPaginator,{static:true}) paginator : MatPaginator
+
   constructor() { }
 
   ngOnInit(): void {
-    this.feedData()
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+    this.feedData();
   }
 
   feedData(){
@@ -30,23 +37,23 @@ export class StockHomeComponent implements OnInit {
 
       },
       {
-        name:"macbook",
-        stock:1,
-        price:42000,
+        name:"iphone",
+        stock:2,
+        price:17000,
         image:"/assets/images/product-item.png",
 
       },
       {
-        name:"macbook",
-        stock:1,
-        price:42000,
+        name:"ipod",
+        stock:3,
+        price:5000,
         image:"/assets/images/product-item.png",
 
       },
       {
-        name:"macbook",
-        stock:1,
-        price:42000,
+        name:"ipad",
+        stock:4,
+        price:14000,
         image:"/assets/images/product-item.png",
 
       }

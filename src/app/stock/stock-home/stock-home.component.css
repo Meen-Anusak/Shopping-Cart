@@ -33,3 +33,14 @@ td.mat-column-action {
 mat-form-field-wrapper {
     padding-bottom: 0;
 }
+
+::ng-deep th.mat-column-stock>.mat-sort-header-container,
+::ng-deep th.mat-column-price>.mat-sort-header-container,
+::ng-deep th.mat-column-name>.mat-sort-header-container {
+    justify-content: center;
+}
+
+::ng-deep .mat-sort-header-arrow,
+::ng-deep .mat-sort-header-sorted {
+    color: #c2185b;
+}

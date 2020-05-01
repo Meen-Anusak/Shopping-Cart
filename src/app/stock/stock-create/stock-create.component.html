@@ -1,1 +1,46 @@
-<p>stock-create works!</p>
+<mat-card>
+    <form [formGroup]='form' (submit)="onSubmit()">
+        <mat-card-header>
+            <mat-card-title class="d-flex justify-content-between align-items-center">
+                <span>Create Product</span>
+                <button mat-raised-button color="primary" type="submit">Submit</button>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content class="p-3">
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <input matInput required formControlName="name">
+                        <mat-label>Name</mat-label>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <input matInput required type="number" formControlName="price">
+                        <mat-label>Price</mat-label>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <input matInput required type="number" formControlName="stock">
+                        <mat-label>Stock</mat-label>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4" *ngIf="imagePreview">
+                    <img class="img-fluid border-0" [src]="imagePreview" alt="">
+                </div>
+                <div class="col-md-8">
+                    <button mat-stroked-button type="button" (click)="inputfile.click()">
+                  <mat-icon>photo</mat-icon>
+                  <span>Select image</span>
+                </button>
+                    <input (change)="onPreviewImage($event)" #inputfile type="file" accept="image/*" formControlName="image">
+                </div>
+
+            </div>
+        </mat-card-content>
+    </form>
+</mat-card>

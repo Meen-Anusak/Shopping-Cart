@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-stock-create',
@@ -7,9 +8,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StockCreateComponent implements OnInit {
 
-  constructor() { }
+  imagePreview:string | ArrayBuffer;
+
+  form:FormGroup
+
+  constructor(
+    private builder : FormBuilder
+  ) { }
 
   ngOnInit(): void {
+    this.CreateFormProduct();
+  }
+
+  CreateFormProduct(){
+    this.form = this.builder.group({
+      name:[''],
+      price:[''],
+      stock:[''],
+      image:['']
+    })
+  }
+
+  onSubmit(){
+    console.log(this.form.value);
+  }
+
+  onPreviewImage(event){
+    const mateImage = event.target.files[0];
+    if(mateImage){
+      const reder = new FileReader()
+      reder.readAsDataURL(mateImage)
+      reder.onload = () =>{
+        this.imagePreview = reder.result;
+      }
+    }
   }
 
 }

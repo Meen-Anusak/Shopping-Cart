@@ -1,0 +1,16 @@
+.box {
+    margin-top: 15px;
+    border-bottom: 1px solid #303030;
+}
+
+.wrapper {
+    padding: 12px;
+    width: 100%;
+    height: 70px;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    border: 2px solid #fff;
+}
