@@ -2,9 +2,7 @@ const db = require('../models')
 
 exports.getProduct = async(req, res, next) => {
     try {
-        const result = await db.Product.findAll({
-            attributes: ['name', 'image']
-        });
+        const result = await db.Product.findAll();
         res.json(result);
     } catch (error) {
         res.json({ message: error.message })
@@ -76,10 +74,12 @@ exports.createProduct = async(req, res, next) => {
             name: name,
             price: price,
             stock: stock,
-            image: imageName
+            image: imageName || 'no-image.png'
         }
         const product = await db.Product.create(data)
-        res.status(201).json(product)
+        if (product) {
+            res.status(201).json({ message: "บันทึกข้อมูลเรียบร้อย" })
+        }
     } catch (error) {
 
     }

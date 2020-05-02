@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ProductService } from 'src/app/services/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-stock-create',
@@ -13,7 +15,9 @@ export class StockCreateComponent implements OnInit {
   form:FormGroup
 
   constructor(
-    private builder : FormBuilder
+    private builder : FormBuilder,
+    private productS : ProductService,
+    private router : Router
   ) { }
 
   ngOnInit(): void {
@@ -22,15 +26,23 @@ export class StockCreateComponent implements OnInit {
 
   CreateFormProduct(){
     this.form = this.builder.group({
-      name:[''],
-      price:[''],
-      stock:[''],
-      image:['']
+      name:['',[Validators.required]],
+      price:['',[Validators.required]],
+      stock:['',[Validators.required]],
+      image:['',[Validators.required]]
     })
   }
 
   onSubmit(){
+    if(this.form.invalid) return;
     console.log(this.form.value);
+
+    this.productS.createProduct(this.form.value).subscribe(
+      result =>{
+        alert(result.message);
+        this.router.navigate(['/stock'])
+      }
+    )
   }
 
   onPreviewImage(event){
@@ -43,5 +55,6 @@ export class StockCreateComponent implements OnInit {
       }
     }
   }
+
 
 }

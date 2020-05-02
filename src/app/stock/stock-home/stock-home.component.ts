@@ -1,25 +1,26 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Product } from 'src/app/models/products.model';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { ProductService } from 'src/app/services/product.service';
+import { IProducts } from 'src/app/services/product.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-stock-home',
   templateUrl: './stock-home.component.html',
-  styleUrls: ['./stock-home.component.css']
+  styleUrls: ['./stock-home.component.css'],
 })
 export class StockHomeComponent implements OnInit {
+  displayedColumns = ['image', 'name', 'price', 'stock', 'action'];
 
-  displayedColumns = ['image','name','price','stock','action']
+  dataSource = new MatTableDataSource<IProducts>();
+  textSearch: string;
 
-  dataSource = new MatTableDataSource<Product>();
-  textSearch : string
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  @ViewChild(MatSort,{static:true}) sort:MatSort
-  @ViewChild(MatPaginator,{static:true}) paginator : MatPaginator
-
-  constructor() { }
+  constructor(private productS: ProductService) {}
 
   ngOnInit(): void {
     this.dataSource.sort = this.sort;
@@ -27,51 +28,52 @@ export class StockHomeComponent implements OnInit {
     this.feedData();
   }
 
-  feedData(){
-    let dummyProduct : Product[] = [
-      {
-        name:"macbook",
-        stock:1,
-        price:42000,
-        image:"/assets/images/product-item.png",
-
+  feedData() {
+    this.productS.getProduct().subscribe(
+      (result) => {
+        this.dataSource.data = result.map((item) => {
+          item.image = this.productS.getImageProduct(item.image);
+          return item;
+        });
       },
-      {
-        name:"iphone",
-        stock:2,
-        price:17000,
-        image:"/assets/images/product-item.png",
-
-      },
-      {
-        name:"ipod",
-        stock:3,
-        price:5000,
-        image:"/assets/images/product-item.png",
-
-      },
-      {
-        name:"ipad",
-        stock:4,
-        price:14000,
-        image:"/assets/images/product-item.png",
-
-      }
-    ]
-    this.dataSource.data = dummyProduct;
+      (error) => {},
+      () => {}
+    );
   }
 
-  search(even:Event){
-    let fliterValue =''
-    if(even){
+  search(even: Event) {
+    let fliterValue = '';
+    if (even) {
       fliterValue = (even.target as HTMLInputElement).value;
     }
-    this.dataSource.filter = fliterValue.trim().toLowerCase()
+    this.dataSource.filter = fliterValue.trim().toLowerCase();
   }
 
-  clearSearch(){
+  clearSearch() {
     this.textSearch = '';
     this.search(null);
   }
 
+  onDelete(data) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: `Delete Product :${data.name}`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.value) {
+        this.productS.deleteProduct(data.id).subscribe(
+          (data) => {
+            Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+            this.feedData();
+          },
+
+          (error) => {}
+        );
+      }
+    });
+  }
 }
