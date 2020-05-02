@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
 import { Router } from '@angular/router';
+import { Product } from 'src/app/model/Create_product.model';
 
 @Component({
   selector: 'app-stock-create',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 export class StockCreateComponent implements OnInit {
 
   imagePreview:string | ArrayBuffer;
-
+  file : File;
   form:FormGroup
 
   constructor(
@@ -21,26 +22,28 @@ export class StockCreateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.CreateFormProduct();
+
   }
 
-  CreateFormProduct(){
-    this.form = this.builder.group({
-      name:['',[Validators.required]],
-      price:['',[Validators.required]],
-      stock:['',[Validators.required]],
-      image:['',[Validators.required]]
-    })
-  }
 
-  onSubmit(){
-    if(this.form.invalid) return;
-    console.log(this.form.value);
 
-    this.productS.createProduct(this.form.value).subscribe(
-      result =>{
-        alert(result.message);
+  onSubmit(productForm :NgForm){
+    if(productForm.invalid) return;
+
+    const values = productForm.value;
+    let product = new Product();
+    product.name = values.name
+    product.price = values.price
+    product.stock = values.stock
+    product.image = this.file
+
+    this.productS.createProduct(product).subscribe(
+      result => {
+        alert(result.message)
         this.router.navigate(['/stock'])
+      },
+      error =>{
+
       }
     )
   }
@@ -48,6 +51,7 @@ export class StockCreateComponent implements OnInit {
   onPreviewImage(event){
     const mateImage = event.target.files[0];
     if(mateImage){
+      this.file = mateImage
       const reder = new FileReader()
       reder.readAsDataURL(mateImage)
       reder.onload = () =>{
