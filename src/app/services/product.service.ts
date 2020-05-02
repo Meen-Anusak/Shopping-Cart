@@ -19,6 +19,15 @@ export class ProductService {
   }
 
 
+  getProductById(id:number) :Observable<IProducts>{
+    return this.http.get<IProducts>(this.Products+"/"+id)
+  }
+
+  editProduct(id:number,product) :Observable<any>{
+    return this.http.put<any>(this.Products+'/'+id,this.makeFormProduct(product))
+  }
+
+
   getImageProduct(image:string){
     if(image){
       return environment.URL+"images/" + image

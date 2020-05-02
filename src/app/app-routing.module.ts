@@ -9,7 +9,7 @@ import { StockEditComponent } from './stock/stock-edit/stock-edit.component';
 const routes: Routes = [
   {path:'stock',component:StockHomeComponent},
   {path:'stock/create',component:StockCreateComponent},
-  {path:'stock/edit',component:StockEditComponent}
+  {path:'stock/edit/:id',component:StockEditComponent}
 ];
 
 @NgModule({

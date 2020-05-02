@@ -10,6 +10,20 @@ exports.getProduct = async(req, res, next) => {
 
 }
 
+exports.getProductById = async(req, res, next) => {
+    try {
+        const [result] = await db.Product.findAll({
+            where: {
+                id: req.params.id
+            }
+        });
+        res.json(result);
+    } catch (error) {
+        res.json({ message: error.message })
+    }
+
+}
+
 
 exports.updateProduct = async(req, res, next) => {
     const { name, price, stock, image } = req.body;
@@ -51,9 +65,9 @@ async function updatePD(req, res, result) {
         })
         if (product) {
             const update = await db.Product.findByPk(result.id)
-            res.status(201).json(update)
+            res.status(201).json({ message: 'แก้ไขข้อมูลสำเร็จ' })
         } else {
-            throw new Error('อัพเดตข้อมูลไม่สำเร็จ')
+            throw new Error('แก้ไขข้อมูลไม่สำเร็จ')
         }
 
     } catch (error) {
