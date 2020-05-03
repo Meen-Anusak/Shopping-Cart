@@ -34,3 +34,8 @@ body {
         margin-bottom: 12px;
     }
 }
+
+.custom-backdrop.custom-backdrop {
+    background-color: black;
+    opacity: 0.9;
+}

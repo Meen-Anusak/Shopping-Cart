@@ -6,6 +6,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { IProducts } from 'src/app/services/product.model';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-stock-home',
   templateUrl: './stock-home.component.html',
@@ -20,7 +21,7 @@ export class StockHomeComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(private productS: ProductService) {}
+  constructor(private productS: ProductService,) {}
 
   ngOnInit(): void {
     this.dataSource.sort = this.sort;
@@ -35,6 +36,7 @@ export class StockHomeComponent implements OnInit {
           item.image = this.productS.getImageProduct(item.image);
           return item;
         });
+
       },
       (error) => {},
       () => {}

@@ -4,16 +4,20 @@ import { StockHomeComponent } from './stock/stock-home/stock-home.component';
 import { StockCreateComponent } from './stock/stock-create/stock-create.component';
 import { StockEditComponent } from './stock/stock-edit/stock-edit.component';
 
-
-
 const routes: Routes = [
-  {path:'stock',component:StockHomeComponent},
-  {path:'stock/create',component:StockCreateComponent},
-  {path:'stock/edit/:id',component:StockEditComponent}
+  { path: '', redirectTo: 'stock', pathMatch: 'full' },
+  {path: 'stock',
+    children: [
+      { path: '', component: StockHomeComponent },
+      { path: 'create', component: StockCreateComponent },
+      { path: 'edit/:id', component: StockEditComponent },
+    ],
+  },
+  { path: '**', redirectTo: 'stock',},
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

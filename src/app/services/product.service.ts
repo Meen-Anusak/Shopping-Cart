@@ -9,22 +9,22 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductService {
 
-  Products = environment.URL+ "product"
+
 
 
   constructor(private http : HttpClient) { }
 
   getProduct() :Observable<IProducts[]>{
-    return this.http.get<IProducts[]>(this.Products)
+    return this.http.get<IProducts[]>("product")
   }
 
 
   getProductById(id:number) :Observable<IProducts>{
-    return this.http.get<IProducts>(this.Products+"/"+id)
+    return this.http.get<IProducts>("product/"+id)
   }
 
   editProduct(id:number,product) :Observable<any>{
-    return this.http.put<any>(this.Products+'/'+id,this.makeFormProduct(product))
+    return this.http.put<any>('product/'+id,this.makeFormProduct(product))
   }
 
 
@@ -37,11 +37,11 @@ export class ProductService {
   }
 
   deleteProduct(id:number):Observable<any>{
-    return this.http.delete<any>(this.Products + '/' + id)
+    return this.http.delete<any>( 'product/' + id)
   }
 
   createProduct(product):Observable<any>{
-    return this.http.post<any>(this.Products,this.makeFormProduct(product))
+    return this.http.post<any>('product/',this.makeFormProduct(product))
   }
 
   makeFormProduct(product:any):FormData{
