@@ -17,105 +17,64 @@ module.exports = {
 };
 
 const data = [{
-        "name": "Arduino Sensor Kit V5.0",
-        "image": "product_10.jpg",
+        "name": "MacbookPro",
+        "image": "macbookPro.jpeg",
         "stock": 13,
-        "price": 150
+        "price": 42000
     },
     {
-        "name": "4-Channel 5VDC Relay Module Relay Active High / LOW",
-        "image": "product_02.jpg",
-        "stock": 1,
+        "name": "MacbookAir",
+        "image": "macbookAir.jpeg",
+        "stock": 10,
+        "price": 29000
+    },
+    {
+        "name": "iphoneSE2020",
+        "image": "iphoneSE2020.jpeg",
+        "stock": 8,
+        "price": 19000
+    },
+    {
+        "name": "iphone11-Max",
+        "image": "iphone11-max.jpeg",
+        "stock": 10,
         "price": 185
     },
     {
-        "name": "4-Channel 5VDC Relay Module Relay Active High / LOW",
-        "image": "product_01.jpg",
-        "stock": 1,
-        "price": 185
+        "name": "I-mac",
+        "image": "Imac.jpeg",
+        "stock": 10,
+        "price": 55000
     },
     {
-        "name": "4-Channel 5VDC Relay Module Relay Active High / LOW",
-        "image": "product_07.jpg",
-        "stock": 1,
-        "price": 185
+        "name": "Applewatch",
+        "image": "applewatch.jpeg",
+        "stock": 7,
+        "price": 10000
     },
     {
-        "name": "Arduino MEGA 2560 R3 ใช้ชิฟ USB CH340 รุ่นใหม่ แถมสาย USB",
-        "image": "product_05.jpg",
-        "stock": 100,
-        "price": 200
+        "name": "Iphone7",
+        "image": "iphone7.jpg",
+        "stock": 25,
+        "price": 14000
     },
     {
-        "name": "Arduino Nano 3.0 Mini USB รุ่นใหม่ใช้ชิฟ CH340G แถมสาย Mini USB",
-        "image": "product_23.jpg",
-        "stock": 2,
-        "price": 130
+        "name": "Iphone8",
+        "image": "iphone8.png",
+        "stock": 30,
+        "price": 22000
     },
     {
-        "name": "Arduino ProtoShield Mini UNO Prototype Shield พร้อม Mini Breadboard",
-        "image": "product_12.jpg",
-        "stock": 100,
-        "price": 60
+        "name": "Beats Studio3",
+        "image": "beats3.jpg",
+        "stock": 10,
+        "price": 10000
     },
     {
-        "name": "WeMos D1 R2 WiFi ESP8266 Development Board Compatible Arduino UNO",
-        "image": "product_21.jpg",
-        "stock": 100,
-        "price": 370
-    },
-    {
-        "name": "Arduino UNO R3 แถมสาย USB Type A Male/B Male Cable",
-        "image": "product_04.jpg",
+        "name": "Beats Solo3",
+        "image": "beatssolo3.jpeg",
         "stock": 1000,
-        "price": 300
+        "price": 7000
     },
-    {
-        "name": "Raining Sensor",
-        "image": "product_16.jpg",
-        "stock": 1000,
-        "price": 300
-    },
-    {
-        "name": "NodeMCU32",
-        "image": "product_17.jpg",
-        "stock": 1000,
-        "price": 300
-    },
-    {
-        "name": "IR Flame Detector Module (ตรวจจับเปลวไฟด้วย Infrared)",
-        "image": "product_19.jpg",
-        "stock": 60,
-        "price": 100
-    },
-    {
-        "name": "IR Flame Detector Module (ตรวจจับเปลวไฟด้วย Infrared)",
-        "image": "product_20.jpg",
-        "stock": 100,
-        "price": 290
-    },
-    {
-        "name": "DotMatrix LED Display",
-        "image": "product_14.jpg",
-        "stock": 1000,
-        "price": 300
-    },
-    {
-        "name": "DHT 22 - Temp. Sensor",
-        "image": "product_15.jpg",
-        "stock": 1000,
-        "price": 300
-    },
-    {
-        "name": "Arduino Sensor Shield V5.0",
-        "image": "product_11.jpg",
-        "stock": 100,
-        "price": 150
-    },
-    {
-        "name": "NodeMCU Development Kit V2 แถมสาย USB (Node MCU)",
-        "image": "product_22.jpg",
-        "stock": 0,
-        "price": 280
-    }
+
 ]
